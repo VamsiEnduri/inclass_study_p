@@ -64,7 +64,7 @@ from groq import Groq
 
 # pip install groq
 client=Groq(
-    api_key= "",
+    api_key= st.secrets["g_api_key"],
     base_url=""
 ) 
 
@@ -96,7 +96,7 @@ def fetch_plan(goal,days,hours,extra):
 
 
     try:
-        client.chat.completions.create(
+        response=client.chat.completions.create(
             model="llama-3.1-8b-instant",
             messages=[
                 {
@@ -105,12 +105,14 @@ def fetch_plan(goal,days,hours,extra):
                 }
             ]
         )
+        return response
     except Exception as e:
         return f"❌ Error: {str(e)}"    
 
 if st.button("genrate plan"):
     if goal:
         with st.spinner("genrtaing plan wait a moment"):
-            fetch_plan(goal,days,hours,extra)
+            plan=fetch_plan(goal,days,hours,extra)
+            st.write(plan)
 
 
