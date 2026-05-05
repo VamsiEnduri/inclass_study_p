@@ -65,7 +65,7 @@ from groq import Groq
 # pip install groq
 client=Groq(
     api_key= st.secrets["g_api_key"],
-    base_url=""
+    base_url="https://api.groq.com/openai/v1"
 ) 
 
 st.title("📚 AI Study Planner Agent")
