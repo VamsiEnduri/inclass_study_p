@@ -112,6 +112,6 @@ if st.button("genrate plan"):
     if goal:
         with st.spinner("genrtaing plan wait a moment"):
             plan=fetch_plan(goal,days,hours,extra)
-            st.write(plan)
+            st.write(plan.choices[0].message.content)
 
 
